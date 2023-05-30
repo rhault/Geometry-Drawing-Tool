@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Js</title>
+    <style>
+        body{
+            align-items: center;
+            background-color: #fcf4ec;
+            display: flex;
+            flex-direction: column;
+        }
+        .menu{
+            background-color: white;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            padding: 10px 0;
+            width: 90%;
+        }
+
+        .menu div{
+            margin-right: 10px;
+        }
+
+        .btn{
+            background-color:#fb7e1e ;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        .option{
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            display: none;
+            padding: 10px;
+            position: absolute;
+            width: 220px;
+        }
+
+        .triangle-option{
+            width: 260px;
+        }
+
+        .option .input-menu div{
+            display: inline-block;
+            
+            padding: 10px 0 10px 0;
+        }
+        .option div label{
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .option .input-menu input{
+            padding: 10px;
+            width: 40px;
+        }
+
+        canvas{
+            border: 1px solid gray;
+        }
+
+        aside{
+            background-color: #eaeaf5;
+            color: black;
+            height: 500px;
+            margin-left: 20px;
+            width: 350px;
+        }
+
+        .shape:hover .option{
+            display: block;
+        }
+
+        .container{
+            margin-top: 50px;
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <h1>Math with Javascript</h1>
+
+    <div class="menu">
+        <div class="rect shape">
+            <div class="btn">
+                <span>Retangulo</span>
+                <i>icone</i>
+            </div>
+            <div class="option rect-option">
+                <h4>Dimeçoes do Retangulo</h4>
+                <div class="input-menu">
+                    <div>
+                        <label for="base">Largura</label>
+                        <input type="text" name="base" class="base">
+                    </div>
+                    <div>
+                        <label for="height">Altura</label>
+                        <input type="text" name="height" class="height">
+                    </div>
+                </div>
+                <button onclick="createRect()" class="btnMakeRect">Criar</button>
+                <button onclick="createRandomRect()">Random</button>
+            </div>
+        </div>
+        <div class="tri shape">
+            <div class="btn">
+                <span>Triangulo</span>
+                <i>icone</i>
+            </div>
+            <div class="option triangle-option">
+                <h4>Lados do Triangulo</h4>
+                <div class="input-menu">
+                    <div>
+                        <label for="side_a">Lado A</label>
+                        <input type="text" name="side_a" class="side_a">
+                    </div>
+                    <div>
+                        <label for="side_b">Lado B</label>
+                        <input type="text" name="side_b" class="side_b">
+                    </div>
+                    <div>
+                        <label for="side_c">Lado C</label>
+                        <input type="text" name="side_c" class="side_c">
+                    </div>
+                </div>
+                <button onclick="active('.triangle-option')">Criar</button>
+            </div>
+        </div>      
+        <div class="circle shape">
+            <div class="btn" onclick="active('.circle-option')">
+                <span>Circulo</span>
+                <i>icone</i>
+            </div>
+            <div class="option circle-option">
+                <h4>Radio do Circulo</h4>
+                <div class="input-menu">
+                    <div>
+                        <label for="radius">Radio</label>
+                        <input type="text" name="radius" class="radius">
+                    </div>
+                </div>
+                <button onclick="createCircle()">Criar</button>
+                <button onclick="createRandomCircle()">Aleatorio</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <canvas width="500" height="500"></canvas>
+        <aside>
+
+        </aside>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
