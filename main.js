@@ -8,7 +8,7 @@ const createRect = (randomBase = null, randomHeight = null) => {
     
     ctx.clearRect(0,0,500,500)
     ctx.beginPath();
-    ctx.rect(250 - (base/2),250 - (height/2),base,height);
+    ctx.rect(250 - ((base * 38)/2),250 - ((height * 38)/2),base*38,height*38);
     ctx.strokeStyle = 'blue';
     ctx.stroke();
 
@@ -16,24 +16,24 @@ const createRect = (randomBase = null, randomHeight = null) => {
     document.querySelector('.height').value = '';
 
     aside.innerHTML =`
-    {
-    <pre>
-    nome: 'Quadrado',
+    {<pre>
+    nome: ${base === height ? 'Quadrado' : 'Retangulo'},
+    base: ${base},
+    altura: ${height},
     area: ${base * height},
     perimetro: ${2*(base+height)}
-    </pre>
-    }
+    </pre>}
     `;
 }
 
 const createRandomRect = () => {
     createRect(
-        Math.floor((Math.random() * (450 - 10)) + 10),
-        Math.floor((Math.random() * (450 - 10)) + 10)
+        Math.floor((Math.random() * (10 - 1)) + 1),
+        Math.floor((Math.random() * (10 - 1)) + 1)
     )
 }
 
-const createTriangle = () => {
+const createTriangle = (side_a=null, side_b=null) => {
     const side_a = document.querySelector('.side_a').value;
     const side_b = document.querySelector('.side_b').value;
     const side_c = document.querySelector('.side_c').value;
@@ -41,11 +41,13 @@ const createTriangle = () => {
     ctx.beginPath();
     ctx.moveTo(250,250);
     ctx.lineTo(100,300);
-    ctx.lineTo(300,300);
+    ctx.lineTo(500,300);
     ctx.closePath();
     ctx.stroke();
     console.log("aqui")
 }
+
+createTriangle()
 
 const createCircle = (random = null) => {
     const radius = document.querySelector('.radius').value || random;
