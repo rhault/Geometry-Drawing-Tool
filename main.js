@@ -33,7 +33,7 @@ const createRandomRect = () => {
     )
 }
 
-const createTriangle = (side_a=null, side_b=null) => {
+const createTriangle = () => {
     const side_a = document.querySelector('.side_a').value;
     const side_b = document.querySelector('.side_b').value;
     const side_c = document.querySelector('.side_c').value;
@@ -41,13 +41,11 @@ const createTriangle = (side_a=null, side_b=null) => {
     ctx.beginPath();
     ctx.moveTo(250,250);
     ctx.lineTo(100,300);
-    ctx.lineTo(500,300);
+    ctx.lineTo(400,300);
     ctx.closePath();
     ctx.stroke();
     console.log("aqui")
 }
-
-createTriangle()
 
 const createCircle = (random = null) => {
     const radius = document.querySelector('.radius').value || random;
@@ -58,6 +56,14 @@ const createCircle = (random = null) => {
     ctx.stroke();
 
     document.querySelector('.radius').value = '';
+
+    aside.innerHTML =`
+    {<pre>
+    nome: 'Circulo',
+    raio: ${radius},
+    diametro: ${2*radius},
+    </pre>}
+    `;
 }
 
 const createRandomCircle = () => {
