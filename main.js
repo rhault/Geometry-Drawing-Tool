@@ -1,7 +1,24 @@
+const typeTriangulo = document.querySelector('.type-triangle');
+const side_a = document.querySelector('.side_a');
+const side_b = document.querySelector('.side_b');
+const side_c = document.querySelector('.side_c');
+
+const btnRectangle = document.querySelector('.btn-rect');
+btnRectangle.addEventListener('click', () => {
+    document.querySelector('.rect-option').classList.toggle('show')
+})
+
+window.onclick = (event) => {
+    
+    console.log(event.target.matches('.btn'));
+    //document.querySelector('.rect-option').classList.remove('show')
+}
+
 const aside = document.querySelector('aside');
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
+//Reactangle
 const createRect = (randomBase = null, randomHeight = null) => {
     const base = document.querySelector('.base').value || randomBase;
     const height = document.querySelector('.height').value || randomHeight;
@@ -33,20 +50,32 @@ const createRandomRect = () => {
     )
 }
 
+//Triangle
+const selectTypeTriangle = () => {
+    console.log(typeTriangulo.value)
+    if(typeTriangulo.value == "Equilatero"){
+        console.log("Equilatero");
+    }else if(typeTriangulo.value == "Isosceles"){
+        console.log("isosceles");
+    }else{
+        console.log("Escaleno");
+    }
+}
+
 const createTriangle = () => {
-    const side_a = document.querySelector('.side_a').value;
-    const side_b = document.querySelector('.side_b').value;
-    const side_c = document.querySelector('.side_c').value;
 
     ctx.beginPath();
     ctx.moveTo(250,250);
     ctx.lineTo(100,300);
-    ctx.lineTo(400,300);
+    ctx.lineTo(500,300);
     ctx.closePath();
     ctx.stroke();
     console.log("aqui")
 }
 
+createTriangle()
+
+//Circle
 const createCircle = (random = null) => {
     const radius = document.querySelector('.radius').value || random;
     
@@ -56,14 +85,6 @@ const createCircle = (random = null) => {
     ctx.stroke();
 
     document.querySelector('.radius').value = '';
-
-    aside.innerHTML =`
-    {<pre>
-    nome: 'Circulo',
-    raio: ${radius},
-    diametro: ${2*radius},
-    </pre>}
-    `;
 }
 
 const createRandomCircle = () => {
