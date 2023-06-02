@@ -75,13 +75,17 @@
             width: 350px;
         }
 
-        .shape:hover .option{
+        /* .shape:hover .option{
             display: block;
-        }
+        } */
 
         .container{
             margin-top: 50px;
             display: flex;
+        }
+
+        .show{
+            display: block;
         }
     </style>
 </head>
@@ -90,9 +94,8 @@
 
     <div class="menu">
         <div class="rect shape">
-            <div class="btn">
-                <span>Retangulo</span>
-                <i>icone</i>
+            <div class="btn btn-rect">
+                Retangulo
             </div>
             <div class="option rect-option">
                 <h4>Dimeçoes do Retangulo</h4>
@@ -118,6 +121,13 @@
             <div class="option triangle-option">
                 <h4>Lados do Triangulo</h4>
                 <div class="input-menu">
+                    <div>
+                        <select name="type" class="type-triangle" onchange="selectTypeTriangle()">
+                            <option value="equilatero">Equilatero</option>
+                            <option value="isoscele">Isoscele</option>
+                            <option value="escaleno">Escaleno</option>
+                        </select>
+                    </div>
                     <div>
                         <label for="side_a">Lado A</label>
                         <input type="text" name="side_a" class="side_a">
