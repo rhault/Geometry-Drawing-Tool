@@ -1,22 +1,45 @@
+//CONSTANTE DROPDOWN
+const containerRect = document.querySelector('.rect');
+const containerTriangle = document.querySelector('.triangle');
+const containerCircle = document.querySelector('.circle');
+const optionRect = document.querySelector('.rect-option');
+const optionTriangle = document.querySelector('.triangle-option');
+const optionCircle = document.querySelector('.circle-option');
+//CONSTANTE TRIANGLE
 const typeTriangulo = document.querySelector('.type-triangle');
-const side_a = document.querySelector('.side_a');
-const side_b = document.querySelector('.side_b');
-const side_c = document.querySelector('.side_c');
-
+const tri_side_a = document.querySelector('.side_a');
+const tri_side_b = document.querySelector('.side_b');
+const tri_side_c = document.querySelector('.side_c');
+//CANVAS
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+const aside = document.querySelector('aside');
+//BUTTONS
 const btnRectangle = document.querySelector('.btn-rect');
 btnRectangle.addEventListener('click', () => {
     document.querySelector('.rect-option').classList.toggle('show')
-})
+});
+const btnTriangle = document.querySelector('.btn-triangle');
+btnTriangle.addEventListener('click', () => {
+    document.querySelector('.triangle-option').classList.toggle('show')
+});
+const btnCircle = document.querySelector('.btn-circle');
+btnCircle.addEventListener('click', () => {
+    document.querySelector('.circle-option').classList.toggle('show')
+});
 
+//CLOSE DROPDOWN
 window.onclick = (event) => {
-    
-    console.log(event.target.matches('.btn'));
-    //document.querySelector('.rect-option').classList.remove('show')
+    if(!containerRect.contains(event.target)){
+        optionRect.classList.remove('show');
+    }
+    if(!containerCircle.contains(event.target)){
+        optionCircle.classList.remove('show');
+    }
+    if(!containerTriangle.contains(event.target)){
+        optionTriangle.classList.remove('show');
+    }
 }
-
-const aside = document.querySelector('aside');
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
 
 //Reactangle
 const createRect = (randomBase = null, randomHeight = null) => {
@@ -52,13 +75,19 @@ const createRandomRect = () => {
 
 //Triangle
 const selectTypeTriangle = () => {
-    console.log(typeTriangulo.value)
-    if(typeTriangulo.value == "Equilatero"){
-        console.log("Equilatero");
-    }else if(typeTriangulo.value == "Isosceles"){
-        console.log("isosceles");
+    if(typeTriangulo.value == "equilatero"){
+        
+    }else if(typeTriangulo.value == "isoscele"){
+        console.log("isoscele");
     }else{
         console.log("Escaleno");
+    }
+}
+
+const showSides = (sides) => {
+    const triangleInput = document.querySelectorAll('.triangle_input');
+    for(let side=0; side<sides; side++){
+        triangleInput[side].classList.toggle('show')
     }
 }
 
