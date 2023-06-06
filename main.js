@@ -76,10 +76,12 @@ const createRandomRect = () => {
 //Triangle
 const selectTypeTriangle = () => {
     if(typeTriangulo.value == "equilatero"){
-        
+        showSides(1)
     }else if(typeTriangulo.value == "isoscele"){
+        showSides(2)
         console.log("isoscele");
     }else{
+        showSides(3)
         console.log("Escaleno");
     }
 }
@@ -87,7 +89,8 @@ const selectTypeTriangle = () => {
 const showSides = (sides) => {
     const triangleInput = document.querySelectorAll('.triangle_input');
     for(let side=0; side<sides; side++){
-        triangleInput[side].classList.toggle('show')
+        console.log(triangleInput[side])
+        triangleInput[side].classList.toggle('show-input')
     }
 }
 
