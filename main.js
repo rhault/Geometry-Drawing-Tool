@@ -94,18 +94,14 @@ const showSides = (sides) => {
     }
 }
 
-const createTriangle = () => {
-
+const createTriangle = (a=a/2,b,c) => {    
     ctx.beginPath();
-    ctx.moveTo(250,250);
-    ctx.lineTo(100,300);
-    ctx.lineTo(500,300);
+    ctx.moveTo(250-a,250+a);
+    ctx.lineTo(250,250-a);
+    ctx.lineTo(250+a,250+a);
     ctx.closePath();
     ctx.stroke();
-    console.log("aqui")
 }
-
-createTriangle()
 
 //Circle
 const createCircle = (random = null) => {
