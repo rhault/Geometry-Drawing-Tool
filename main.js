@@ -7,6 +7,7 @@ const optionTriangle = document.querySelector('.triangle-option');
 const optionCircle = document.querySelector('.circle-option');
 //CONSTANTE TRIANGLE
 const typeTriangulo = document.querySelector('.type-triangle');
+const triangleInput = document.querySelectorAll('.triangle_input');
 const tri_side_a = document.querySelector('.side_a');
 const tri_side_b = document.querySelector('.side_b');
 const tri_side_c = document.querySelector('.side_c');
@@ -75,26 +76,42 @@ const createRandomRect = () => {
 
 //Triangle
 const selectTypeTriangle = () => {
+    
+    optionSelectInputs(3,'remove');
+
     if(typeTriangulo.value == "equilatero"){
-        showSides(1)
+        optionSelectInputs(1,'add');
     }else if(typeTriangulo.value == "isoscele"){
-        showSides(2)
-        console.log("isoscele");
+        triangleInput[1].classList.add('show-input')
+        optionSelectInputs(2,'add');
     }else{
-        showSides(3)
-        console.log("Escaleno");
+        triangleInput[2].classList.add('show-input')
+        optionSelectInputs(3,'add');
     }
 }
 
-const showSides = (sides) => {
-    const triangleInput = document.querySelectorAll('.triangle_input');
-    for(let side=0; side<sides; side++){
-        console.log(triangleInput[side])
-        triangleInput[side].classList.toggle('show-input')
+const optionSelectInputs = (sides,action) => {
+    if(action === 'add'){
+        for(let side=0; side<sides; side++){
+            triangleInput[side].classList.add('show-input')
+        }
+    }else if(action == 'remove'){
+        for(let side=0; side<sides; side++){
+            triangleInput[side].classList.remove('show-input')
+        }
+    }else{
+        for(let side=0; side<sides; side++){
+            console.log(triangleInput[side])
+        }
     }
 }
 
-const createTriangle = (a=a/2,b,c) => {    
+const createTriangle = () => {
+    optionSelectInputs(3)
+} 
+
+const drawTriangle = () => {    
+    
     ctx.beginPath();
     ctx.moveTo(250-a,250+a);
     ctx.lineTo(250,250-a);

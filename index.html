@@ -107,11 +107,11 @@
                 <div class="input-menu">
                     <div>
                         <label for="base">Largura</label>
-                        <input type="text" name="base" class="base">
+                        <input type="number" min="1" max="10" name="base" class="base">cm
                     </div>
                     <div>
                         <label for="height">Altura</label>
-                        <input type="text" name="height" class="height">
+                        <input type="number" min="1" max="10" name="height" class="height">cm
                     </div>
                 </div>
                 <button onclick="createRect()" class="btnMakeRect">Criar</button>
@@ -119,31 +119,33 @@
             </div>
         </div>
         <div class="triangle shape">
-            <div class="btn btn-triangle">Triangulo</div>
+            <div class="btn btn-triangle" onclick="selectTypeTriangle()">Triangulo</div>
             <div class="option triangle-option">
                 <h4>Lados do Triangulo</h4>
                 <div class="input-menu">
                     <div>
-                        <select name="type" class="type-triangle" onchange="selectTypeTriangle()">
-                            <option value="equilatero">Equilatero</option>
+                        <select name="type" class="type-triangle" 
+                            onchange="selectTypeTriangle()"
+                        >
+                            <option value="equilatero" selected>Equilatero</option>
                             <option value="isoscele">Isoscele</option>
                             <option value="escaleno">Escaleno</option>
                         </select>
                     </div>
                     <div class="triangle_input">
                         <label for="side_a">Lado A</label>
-                        <input type="text" name="side_a" class="side_a">
+                        <input type="number" min="1" max="10" name="side_a" class="side_a">
                     </div>
                     <div class="triangle_input">
                         <label for="side_b">Lado B</label>
-                        <input type="text" name="side_b" class="side_b">
+                        <input type="number" min="1" max="10" name="side_b" class="side_b">
                     </div>
                     <div class="triangle_input">
                         <label for="side_c">Lado C</label>
-                        <input type="text" name="side_c" class="side_c">
+                        <input type="number" min="1" max="10" name="side_c" class="side_c">
                     </div>
                 </div>
-                <button onclick="active('.triangle-option')">Criar</button>
+                <button onclick="createTriangle('.triangle-option')">Criar</button>
             </div>
         </div>      
         <div class="circle shape">
