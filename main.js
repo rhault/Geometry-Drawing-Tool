@@ -1,32 +1,38 @@
-//CONSTANTE DROPDOWN
+//CONSTANTE 
 const containerRect = document.querySelector('.rect');
 const containerTriangle = document.querySelector('.triangle');
 const containerCircle = document.querySelector('.circle');
 const optionRect = document.querySelector('.rect-option');
 const optionTriangle = document.querySelector('.triangle-option');
 const optionCircle = document.querySelector('.circle-option');
-//CONSTANTE TRIANGLE
+const baseRect = document.querySelector('.base');
+const heightRect = document.querySelector('.height');
 const typeTriangulo = document.querySelector('.type-triangle');
 const triangleInput = document.querySelectorAll('.triangle_input');
 const tri_side_a = document.querySelector('.side_a');
 const tri_side_b = document.querySelector('.side_b');
 const tri_side_c = document.querySelector('.side_c');
-//CANVAS
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const aside = document.querySelector('aside');
-//BUTTONS
 const btnRectangle = document.querySelector('.btn-rect');
-btnRectangle.addEventListener('click', () => {
-    document.querySelector('.rect-option').classList.toggle('show')
-});
 const btnTriangle = document.querySelector('.btn-triangle');
-btnTriangle.addEventListener('click', () => {
-    document.querySelector('.triangle-option').classList.toggle('show')
-});
 const btnCircle = document.querySelector('.btn-circle');
+const span = document.createElement('span');
+span.append('Valor maximo 50cm');
+
+//Event Listeners
+baseRect.addEventListener('input', inputNumberValidator);
+heightRect.addEventListener('keypress', inputNumberValidator);
+
+btnRectangle.addEventListener('click', () => {
+    optionRect.classList.toggle('show')
+});
+btnTriangle.addEventListener('click', () => {
+    optionTriangle.classList.toggle('show')
+});
 btnCircle.addEventListener('click', () => {
-    document.querySelector('.circle-option').classList.toggle('show')
+    optionCircle.classList.toggle('show')
 });
 
 //CLOSE DROPDOWN
@@ -42,14 +48,15 @@ window.onclick = (event) => {
     }
 }
 
-//Reactangle
+//Function to create a rectangle
+//Maximum dimension 50
 const createRect = (randomBase = null, randomHeight = null) => {
     const base = document.querySelector('.base').value || randomBase;
     const height = document.querySelector('.height').value || randomHeight;
     
     ctx.clearRect(0,0,500,500)
     ctx.beginPath();
-    ctx.rect(250 - ((base * 38)/2),250 - ((height * 38)/2),base*38,height*38);
+    ctx.rect(250 - ((base * 10)/2),250 - ((height * 10)/2),base*10,height*10);
     ctx.strokeStyle = 'blue';
     ctx.stroke();
 
@@ -67,21 +74,22 @@ const createRect = (randomBase = null, randomHeight = null) => {
     `;
 }
 
+//Function to create a rectangle with random values
 const createRandomRect = () => {
-    createRect(
-        Math.floor((Math.random() * (10 - 1)) + 1),
-        Math.floor((Math.random() * (10 - 1)) + 1)
-    )
+    const base = Math.floor((Math.random() * (50 - 1)) + 1);
+    const height = Math.floor((Math.random() * (50 - 1)) + 1); 
+    
+    createRect(base,height);
 }
 
-//Triangle
+//Function that selects the type of triangle
 const selectTypeTriangle = () => {
-    
+    const type = typeTriangulo.value;
     optionSelectInputs(3,'remove');
 
-    if(typeTriangulo.value == "equilatero"){
+    if(type == "equilatero"){
         optionSelectInputs(1,'add');
-    }else if(typeTriangulo.value == "isoscele"){
+    }else if(type == "isoscele"){
         triangleInput[1].classList.add('show-input')
         optionSelectInputs(2,'add');
     }else{
@@ -90,28 +98,25 @@ const selectTypeTriangle = () => {
     }
 }
 
+//Function to show or hide an input
 const optionSelectInputs = (sides,action) => {
     if(action === 'add'){
         for(let side=0; side<sides; side++){
             triangleInput[side].classList.add('show-input')
         }
-    }else if(action == 'remove'){
-        for(let side=0; side<sides; side++){
-            triangleInput[side].classList.remove('show-input')
-        }
     }else{
         for(let side=0; side<sides; side++){
-            console.log(triangleInput[side])
+            triangleInput[side].classList.remove('show-input')
         }
     }
 }
 
 const createTriangle = () => {
-    optionSelectInputs(3)
+    
 } 
 
-const drawTriangle = () => {    
-    
+//Function to draw a triangle
+const drawTriangle = () => {       
     ctx.beginPath();
     ctx.moveTo(250-a,250+a);
     ctx.lineTo(250,250-a);
@@ -120,7 +125,8 @@ const drawTriangle = () => {
     ctx.stroke();
 }
 
-//Circle
+//Function to create a circle
+//Maximum radio 250
 const createCircle = (random = null) => {
     const radius = document.querySelector('.radius').value || random;
     
@@ -132,7 +138,28 @@ const createCircle = (random = null) => {
     document.querySelector('.radius').value = '';
 }
 
+//Function to create a rectangle with random values
 const createRandomCircle = () => {
     createCircle(Math.floor((Math.random() * (250 - 10)) + 10) )
 }
 
+
+// Functions for manipulating the DOM
+function inputNumberValidator(event){
+    const regex = /^(?:[1-9]|[1-4]\d|50)$/;
+    const element = event.target;
+    const elementValue = event.target.value;
+
+    if(!regex.test(elementValue)){
+        element.style.color = "red";
+        if(element.parentNode.lastElementChild.nodeName !== 'SPAN'){
+            element.parentNode.append(span)
+        }
+        console.log('err input')
+    }else{
+        if(element.parentNode.lastElementChild.nodeName == 'SPAN'){
+            element.parentNode.removeChild(span)
+        } 
+    }
+    
+}

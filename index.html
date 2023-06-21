@@ -78,10 +78,6 @@
             width: 350px;
         }
 
-        /* .shape:hover .option{
-            display: block;
-        } */
-
         .container{
             margin-top: 50px;
             display: flex;
@@ -105,13 +101,13 @@
             <div class="option rect-option">
                 <h4>Dimeçoes do Retangulo</h4>
                 <div class="input-menu">
-                    <div>
+                    <div class="inputContainer">
                         <label for="base">Largura</label>
-                        <input type="number" min="1" max="10" name="base" class="base">cm
+                        <input type="number" min="1" max="50" name="base" class="base"> cm
                     </div>
-                    <div>
+                    <div class="inputContainer">
                         <label for="height">Altura</label>
-                        <input type="number" min="1" max="10" name="height" class="height">cm
+                        <input type="number" min="1" max="50" name="height" class="height"> cm
                     </div>
                 </div>
                 <button onclick="createRect()" class="btnMakeRect">Criar</button>
@@ -123,7 +119,7 @@
             <div class="option triangle-option">
                 <h4>Lados do Triangulo</h4>
                 <div class="input-menu">
-                    <div>
+                    <div class="inputContainer">
                         <select name="type" class="type-triangle" 
                             onchange="selectTypeTriangle()"
                         >
@@ -132,20 +128,20 @@
                             <option value="escaleno">Escaleno</option>
                         </select>
                     </div>
-                    <div class="triangle_input">
+                    <div class="triangle_input inputContainer">
                         <label for="side_a">Lado A</label>
-                        <input type="number" min="1" max="10" name="side_a" class="side_a">
+                        <input type="number" min="1" max="50" name="side_a" class="side_a">
                     </div>
-                    <div class="triangle_input">
+                    <div class="triangle_input inputContainer">
                         <label for="side_b">Lado B</label>
-                        <input type="number" min="1" max="10" name="side_b" class="side_b">
+                        <input type="number" min="1" max="50" name="side_b" class="side_b">
                     </div>
-                    <div class="triangle_input">
+                    <div class="triangle_input inputContainer">
                         <label for="side_c">Lado C</label>
-                        <input type="number" min="1" max="10" name="side_c" class="side_c">
+                        <input type="number" min="1" max="50" name="side_c" class="side_c">
                     </div>
                 </div>
-                <button onclick="createTriangle('.triangle-option')">Criar</button>
+                <button onclick="createTriangle()">Criar</button>
             </div>
         </div>      
         <div class="circle shape">
@@ -153,9 +149,9 @@
             <div class="option circle-option">
                 <h4>Radio do Circulo</h4>
                 <div class="input-menu">
-                    <div>
+                    <div class="inputContainer">
                         <label for="radius">Radio</label>
-                        <input type="text" name="radius" class="radius">
+                        <input type="number" min="10" name="radius" class="radius">
                     </div>
                 </div>
                 <button onclick="createCircle()">Criar</button>
