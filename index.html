@@ -124,8 +124,8 @@
                             onchange="selectTypeTriangle()"
                         >
                             <option value="equilatero" selected>Equilatero</option>
-                            <option value="isoscele">Isoscele</option>
-                            <option value="escaleno">Escaleno</option>
+                            <!-- <option value="isoscele">Isoscele</option>
+                            <option value="escaleno">Escaleno</option> -->
                         </select>
                     </div>
                     <div class="triangle_input inputContainer">
@@ -151,7 +151,7 @@
                 <div class="input-menu">
                     <div class="inputContainer">
                         <label for="radius">Radio</label>
-                        <input type="number" min="10" name="radius" class="radius">
+                        <input type="number" min="1" max="50" name="radius" class="radius">
                     </div>
                 </div>
                 <button onclick="createCircle()">Criar</button>

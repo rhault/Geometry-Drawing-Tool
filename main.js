@@ -12,6 +12,7 @@ const triangleInput = document.querySelectorAll('.triangle_input');
 const tri_side_a = document.querySelector('.side_a');
 const tri_side_b = document.querySelector('.side_b');
 const tri_side_c = document.querySelector('.side_c');
+const radiusCircle = document.querySelector('.radius');
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 const aside = document.querySelector('aside');
@@ -19,11 +20,12 @@ const btnRectangle = document.querySelector('.btn-rect');
 const btnTriangle = document.querySelector('.btn-triangle');
 const btnCircle = document.querySelector('.btn-circle');
 const span = document.createElement('span');
-span.append('Valor maximo 50cm');
+//span.append('Valor maximo 50cm');
 
 //Event Listeners
 baseRect.addEventListener('input', inputNumberValidator);
-heightRect.addEventListener('keypress', inputNumberValidator);
+heightRect.addEventListener('input', inputNumberValidator);
+tri_side_a.addEventListener('input', inputNumberValidator);
 
 btnRectangle.addEventListener('click', () => {
     optionRect.classList.toggle('show')
@@ -126,40 +128,45 @@ const drawTriangle = () => {
 }
 
 //Function to create a circle
-//Maximum radio 250
-const createCircle = (random = null) => {
-    const radius = document.querySelector('.radius').value || random;
-    
+const drawCircle = (radius) => {
     ctx.clearRect(0,0,500,500)
     ctx.beginPath();
-    ctx.arc(250,250,radius,0,2*Math.PI);
+    ctx.arc(250,250,radius*10,0,2*Math.PI);
     ctx.stroke();
-
-    document.querySelector('.radius').value = '';
+}
+const createCircle = () => {
+    const radius = radiusCircle.value;
+    drawCircle(radius);
+    radiusCircle.value = ''
 }
 
 //Function to create a rectangle with random values
 const createRandomCircle = () => {
-    createCircle(Math.floor((Math.random() * (250 - 10)) + 10) )
+    const radius = Math.floor((Math.random() * (50 - 10)) + 10);
+    drawCircle(radius)
 }
-
 
 // Functions for manipulating the DOM
 function inputNumberValidator(event){
     const regex = /^(?:[1-9]|[1-4]\d|50)$/;
     const element = event.target;
     const elementValue = event.target.value;
-
+    element.parentNode.append(span);
+    
     if(!regex.test(elementValue)){
         element.style.color = "red";
-        if(element.parentNode.lastElementChild.nodeName !== 'SPAN'){
-            element.parentNode.append(span)
+        span.style.color = "red";
+        
+        if(elementValue <= 0){
+            span.innerText = 'Valor minimo 1cm';
+        }else{
+            span.innerText = 'Valor maximo 50cm';
         }
-        console.log('err input')
+
     }else{
-        if(element.parentNode.lastElementChild.nodeName == 'SPAN'){
-            element.parentNode.removeChild(span)
-        } 
+        element.style.color = "black";
+        element.parentNode.removeChild(span)
+        
     }
     
 }
