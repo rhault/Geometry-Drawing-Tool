@@ -5,96 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Js</title>
-    <style>
-        body{
-            align-items: center;
-            background-color: #fcf4ec;
-            display: flex;
-            flex-direction: column;
-        }
-        .menu{
-            background-color: white;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            flex-direction: row;
-            padding: 10px 0;
-            width: 90%;
-        }
-
-        .menu div{
-            margin-right: 10px;
-        }
-
-        .btn{
-            background-color:#fb7e1e ;
-            border-radius: 5px;
-            color: white;
-            font-weight: bold;
-            padding: 15px;
-        }
-
-        .option{
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            display: none;
-            padding: 10px;
-            position: absolute;
-            width: 220px;
-        }
-
-        .triangle-option{
-            width: 260px;
-        }
-
-        .triangle_input{
-            display: none;
-            padding: 10px 0 10px 0;
-        }
-        .option div label{
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .option .input-menu input{
-            padding: 10px;
-            width: 40px;
-        }
-        
-        .option .input-menu div:nth-child(1){
-            display: inline-block;
-        }
-
-        canvas{
-            border: 1px solid gray;
-        }
-
-        aside{
-            background-color: #eaeaf5;
-            color: black;
-            height: 500px;
-            margin-left: 20px;
-            width: 350px;
-        }
-
-        .container{
-            margin-top: 50px;
-            display: flex;
-        }
-
-        .show{
-            display: block;
-        }
-
-        .show-input{
-            display: inline-block;
-        }
-    </style>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <h1>Math with Javascript</h1>
-
     <div class="menu">
         <div class="rect shape">
             <div class="btn btn-rect">Retangulo</div>
@@ -124,8 +38,8 @@
                             onchange="selectTypeTriangle()"
                         >
                             <option value="equilatero" selected>Equilatero</option>
-                            <!-- <option value="isoscele">Isoscele</option>
-                            <option value="escaleno">Escaleno</option> -->
+                            <option value="isoscele">Isoscele</option>
+                            <option value="escaleno">Escaleno</option>
                         </select>
                     </div>
                     <div class="triangle_input inputContainer">
@@ -142,6 +56,7 @@
                     </div>
                 </div>
                 <button onclick="createTriangle()">Criar</button>
+                <button onclick="createRandomTriangle()">Aleatorio</button>
             </div>
         </div>      
         <div class="circle shape">
@@ -159,14 +74,10 @@
             </div>
         </div>
     </div>
-    
     <div class="container">
         <canvas width="500" height="500"></canvas>
-        <aside>
-
-        </aside>
+        <aside></aside>
     </div>
-    
     <script src="main.js"></script>
 </body>
 </html>
