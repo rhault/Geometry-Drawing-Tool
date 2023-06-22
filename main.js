@@ -9,9 +9,9 @@ const baseRect = document.querySelector('.base');
 const heightRect = document.querySelector('.height');
 const typeTriangulo = document.querySelector('.type-triangle');
 const triangleInput = document.querySelectorAll('.triangle_input');
-const tri_side_a = document.querySelector('.side_a');
-const tri_side_b = document.querySelector('.side_b');
-const tri_side_c = document.querySelector('.side_c');
+const sideTriangleA = document.querySelector('.side_a');
+const sideTriangleB = document.querySelector('.side_b');
+const sideTrianglec = document.querySelector('.side_c');
 const radiusCircle = document.querySelector('.radius');
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
@@ -20,12 +20,12 @@ const btnRectangle = document.querySelector('.btn-rect');
 const btnTriangle = document.querySelector('.btn-triangle');
 const btnCircle = document.querySelector('.btn-circle');
 const span = document.createElement('span');
-//span.append('Valor maximo 50cm');
+const regex = /^(?:[1-9]|[1-4]\d|50)$/;
 
 //Event Listeners
 baseRect.addEventListener('input', inputNumberValidator);
 heightRect.addEventListener('input', inputNumberValidator);
-tri_side_a.addEventListener('input', inputNumberValidator);
+sideTriangleA.addEventListener('input', inputNumberValidator);
 
 btnRectangle.addEventListener('click', () => {
     optionRect.classList.toggle('show')
@@ -37,34 +37,24 @@ btnCircle.addEventListener('click', () => {
     optionCircle.classList.toggle('show')
 });
 
-//CLOSE DROPDOWN
-window.onclick = (event) => {
-    if(!containerRect.contains(event.target)){
-        optionRect.classList.remove('show');
-    }
-    if(!containerCircle.contains(event.target)){
-        optionCircle.classList.remove('show');
-    }
-    if(!containerTriangle.contains(event.target)){
-        optionTriangle.classList.remove('show');
-    }
-}
-
 //Function to create a rectangle
 //Maximum dimension 50
-const createRect = (randomBase = null, randomHeight = null) => {
-    const base = document.querySelector('.base').value || randomBase;
-    const height = document.querySelector('.height').value || randomHeight;
-    
+const drawRect = (base, height) => {
     ctx.clearRect(0,0,500,500)
     ctx.beginPath();
     ctx.rect(250 - ((base * 10)/2),250 - ((height * 10)/2),base*10,height*10);
     ctx.strokeStyle = 'blue';
     ctx.stroke();
+}
+const createRect = () => {
+    const base = baseRect.value;
+    const height = heightRect.value;
 
-    document.querySelector('.base').value = '';
-    document.querySelector('.height').value = '';
+    if(!regex.test(base) && !regex.test(height)){
+        return
+    }
 
+    drawRect(base, height)
     aside.innerHTML =`
     {<pre>
     nome: ${base === height ? 'Quadrado' : 'Retangulo'},
@@ -74,6 +64,9 @@ const createRect = (randomBase = null, randomHeight = null) => {
     perimetro: ${2*(base+height)}
     </pre>}
     `;
+
+    baseRect.value = '';
+    heightRect.value = '';
 }
 
 //Function to create a rectangle with random values
@@ -81,7 +74,7 @@ const createRandomRect = () => {
     const base = Math.floor((Math.random() * (50 - 1)) + 1);
     const height = Math.floor((Math.random() * (50 - 1)) + 1); 
     
-    createRect(base,height);
+    drawRect(base,height);
 }
 
 //Function that selects the type of triangle
@@ -113,27 +106,36 @@ const optionSelectInputs = (sides,action) => {
     }
 }
 
+//Function to create a triangle
 const createTriangle = () => {
-    
+    const sides = sideTriangleA.value;
+
+    if(!regex.test(sides)) return;
+
+    drawTriangle(sides);
+
+    sideTriangleA.value = '';
 } 
 
 //Function to draw a triangle
-const drawTriangle = () => {       
+const drawTriangle = (side) => {       
     ctx.beginPath();
-    ctx.moveTo(250-a,250+a);
-    ctx.lineTo(250,250-a);
-    ctx.lineTo(250+a,250+a);
+    ctx.moveTo(250-side,250+side);
+    ctx.lineTo(250,250-side);
+    ctx.lineTo(250+side,250+side);
     ctx.closePath();
     ctx.stroke();
 }
 
-//Function to create a circle
+//Function to draw a circle
 const drawCircle = (radius) => {
     ctx.clearRect(0,0,500,500)
     ctx.beginPath();
     ctx.arc(250,250,radius*10,0,2*Math.PI);
     ctx.stroke();
 }
+
+//Function to create a circle
 const createCircle = () => {
     const radius = radiusCircle.value;
     drawCircle(radius);
@@ -148,7 +150,6 @@ const createRandomCircle = () => {
 
 // Functions for manipulating the DOM
 function inputNumberValidator(event){
-    const regex = /^(?:[1-9]|[1-4]\d|50)$/;
     const element = event.target;
     const elementValue = event.target.value;
     element.parentNode.append(span);
@@ -170,3 +171,17 @@ function inputNumberValidator(event){
     }
     
 }
+
+//Close dropdown
+window.onclick = (event) => {
+    if(!containerRect.contains(event.target)){
+        optionRect.classList.remove('show');
+    }
+    if(!containerCircle.contains(event.target)){
+        optionCircle.classList.remove('show');
+    }
+    if(!containerTriangle.contains(event.target)){
+        optionTriangle.classList.remove('show');
+    }
+}
+
