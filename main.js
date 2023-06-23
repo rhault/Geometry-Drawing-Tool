@@ -140,10 +140,14 @@ const drawTriangle = (sides) => {
     ctx.closePath();
     ctx.stroke();
 
+    //h = (side * √3) / 2    
+    const height = ((sides * Math.sqrt(3)) / 2).toFixed(2);
+
     aside.innerHTML =`
     {<pre>
     nome: 'Triangulo',
-    tipo: '${typeTriangulo.value}'
+    tipo: '${typeTriangulo.value}',
+    altura: '${height}
     </pre>}
     `;
 }
@@ -155,11 +159,18 @@ const drawCircle = (radius) => {
     // Draw the circle on the canvas
     ctx.arc(250,250,radius*5,0,2*Math.PI);
     ctx.stroke();
+    
+    const diameter = radius * 2;
+    const squareRadius = Math.pow(radius,2).toFixed(2);
+    const PI = Math.PI.toFixed(2);
 
     aside.innerHTML =`
     {<pre>
     nome: 'Circulo',
-    radio: '${radius}'
+    radio: '${radius}',
+    diametro: '${diameter}'
+    circunferencia: '${diameter * PI},
+    area: '${squareRadius * PI}',
     </pre>}`
 }
 
